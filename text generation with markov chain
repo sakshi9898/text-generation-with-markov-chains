@@ -1,11 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Text Generation with Markov Chains.ipynb
-
-
-
-# ============================================
-# Task 3: Text Generation with Markov Chains
-# ============================================
+"""Text Generation with Markov Chains"""
 
 import random
 
@@ -20,22 +14,19 @@ words = text.split()  # Split text into words
 markov_chain = {}
 
 # Step 3: Build the Markov chain dictionary
-for i in range(len(words)-1):
+for i in range(len(words) - 1):
     key = words[i]
-    next_word = words[i+1]
+    next_word = words[i + 1]
     if key in markov_chain:
         markov_chain[key].append(next_word)
     else:
         markov_chain[key] = [next_word]
 
-# Optional: Print Markov chain dictionary (for debugging)
-# print(markov_chain)
-
 # Step 4: Function to generate text
 def generate_text(chain, length=30):
     word = random.choice(list(chain.keys()))
     result = [word]
-    for _ in range(length-1):
+    for _ in range(length - 1):
         if word in chain:
             word = random.choice(chain[word])
             result.append(word)
@@ -47,5 +38,4 @@ def generate_text(chain, length=30):
 # Step 5: Generate text
 generated = generate_text(markov_chain, 50)  # Generate 50 words
 print("✅ Generated Text:\n")
-
 print(generated)
